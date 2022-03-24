@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
+import DismissKeyboardView from '../components/DismissKeyboardView';
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
@@ -60,7 +61,7 @@ function SignUp({navigation}: SignUpScreenProps) {
 
   const canGoNext = email && name && password;
   return (
-    <KeyboardAvoidingView behavior="position">
+    <DismissKeyboardView>
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>이메일</Text>
         <TextInput
@@ -69,6 +70,7 @@ function SignUp({navigation}: SignUpScreenProps) {
           placeholder="이메일을 입력해주세요"
           placeholderTextColor="#666"
           textContentType="emailAddress"
+          keyboardType="email-address" // 골뱅이 @ 있는 입력창
           value={email}
           returnKeyType="next"
           clearButtonMode="while-editing"
@@ -122,7 +124,7 @@ function SignUp({navigation}: SignUpScreenProps) {
           <Text style={styles.loginButtonText}>회원가입</Text>
         </Pressable>
       </View>
-    </KeyboardAvoidingView>
+    </DismissKeyboardView>
   );
 }
 
